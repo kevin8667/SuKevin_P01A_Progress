@@ -6,6 +6,9 @@ public class Projectile : MonoBehaviour
 {
     protected Rigidbody _rb;
     [SerializeField] protected float _travelSpeed = .25f;
+    [SerializeField] GameObject _impactParticles;
+    [SerializeField] AudioClip _impactSound;
+    private GameObject _NewImpactParticles;
 
     protected float TravelSpeed 
     {
@@ -34,9 +37,39 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    protected virtual void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.tag == "Boss")
+        {
+            ImpactFeedback();
+            _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
+            if (_NewImpactParticles)
+            {
+                Destroy(_NewImpactParticles,1f);
+            }
+            Destroy(gameObject);
+            
+            
+            
+        }
+    }
+
     protected virtual void Move()
     {
         Vector3 moveOffset = transform.forward * _travelSpeed * Time.fixedDeltaTime;
         _rb.MovePosition(_rb.position + moveOffset);
+    }
+
+    public void ImpactFeedback()
+    {
+        /**if (_impactParticles != null)
+        {
+            _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
+
+        }**/
+        if (_impactSound != null)
+        {
+            AudioHelper.PlayClip2D(_impactSound, 1f);
+        }
     }
 }

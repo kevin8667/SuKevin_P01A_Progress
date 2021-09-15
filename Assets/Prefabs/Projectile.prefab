@@ -110,6 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _travelSpeed: 10
+  _impactParticles: {fileID: 4747200892231869535, guid: 7e398330762370d43b02e8fb0d67a51a,
+    type: 3}
+  _impactSound: {fileID: 8300000, guid: 2a400a83b67ac324eaf07a4116a6a258, type: 3}
 --- !u!54 &1727069033914153712
 Rigidbody:
   m_ObjectHideFlags: 0
