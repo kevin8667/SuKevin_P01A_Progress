@@ -1887,7 +1887,7 @@ GameObject:
   - component: {fileID: 988977594}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2197,9 +2197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d2d9ae4a2e5c144ab10e6aedda0210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
-  projectile: {fileID: 1727069033914153713, guid: 9589eb4f19feb65488263d140a588c5f,
+  _moveSpeed: 0.12
+  _projectile: {fileID: 1727069033914153713, guid: 9589eb4f19feb65488263d140a588c5f,
     type: 3}
+  _shootParticles: {fileID: 7835207434521590833, guid: 34377c9b8e0a4e34ab43373d8b5d819a,
+    type: 3}
+  _shootSound: {fileID: 8300000, guid: 9ce1317d4193fde46932b5249ccefb8d, type: 3}
 --- !u!54 &988977593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4789,8 +4792,25 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.018776773, y: 0.014450227, z: 0.01016111}
-  m_Center: {x: 0.0001098998, y: -0.0027749029, z: 0.00029346466}
+  m_Size: {x: 0.018776773, y: 0.014450227, z: 0.017103143}
+  m_Center: {x: 0.0001098998, y: -0.0027749029, z: 0.0011368876}
+--- !u!114 &1647700585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647700578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d59e4eb075c5a4d9e868d1b5da5dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 0.25
+  _projectile: {fileID: 2318271757839538092, guid: f7ead72394cd72b4a89354c45d403227,
+    type: 3}
+  _numberOfObject: 30
+  _radius: 2
 --- !u!1 &1648978126
 GameObject:
   m_ObjectHideFlags: 0

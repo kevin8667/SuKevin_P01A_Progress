@@ -6,15 +6,16 @@ public class Projectile : MonoBehaviour
 {
     protected Rigidbody _rb;
     [SerializeField] protected float _travelSpeed = .25f;
-    [SerializeField] GameObject _impactParticles;
-    [SerializeField] AudioClip _impactSound;
-    private GameObject _NewImpactParticles;
+    [SerializeField] protected GameObject _impactParticles;
+    [SerializeField] protected AudioClip _impactSound;
+    protected GameObject _NewImpactParticles;
 
     protected float TravelSpeed 
     {
         get { return _travelSpeed; }
         set { _travelSpeed = value; }
     }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -41,7 +42,10 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Boss")
         {
-            ImpactFeedback();
+            if (_impactSound != null)
+            {
+                AudioHelper.PlayClip2D(_impactSound, 1f);
+            }
             _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
             if (_NewImpactParticles)
             {
@@ -60,16 +64,4 @@ public class Projectile : MonoBehaviour
         _rb.MovePosition(_rb.position + moveOffset);
     }
 
-    public void ImpactFeedback()
-    {
-        /**if (_impactParticles != null)
-        {
-            _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
-
-        }**/
-        if (_impactSound != null)
-        {
-            AudioHelper.PlayClip2D(_impactSound, 1f);
-        }
-    }
 }
