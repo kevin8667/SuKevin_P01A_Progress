@@ -7,10 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = .12f;
-    [SerializeField] float turnSpeed = .3f;
 
     Rigidbody _rb = null;
-
+    public GameObject projectile;
 
 
     private void Awake()
@@ -23,13 +22,18 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         MoveHorizontal();
+        
     }
 
 
     // Update is called once per frame
     void Update()
     {
-     
+        if (Input.GetKeyDown("space"))
+        {
+            Debug.Log("fire");
+            Instantiate(projectile, transform.position + new Vector3(0,0, 0.5f), Quaternion.identity);
+        }
 
     }
 
