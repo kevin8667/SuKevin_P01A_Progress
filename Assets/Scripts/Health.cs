@@ -19,7 +19,7 @@ public class Health : MonoBehaviour , IDamageable
     public void TakeDamage(int amount)
     {
         _currentHealth -= amount;
-        Debug.Log("Boss Health: " + _currentHealth);
+        Debug.Log(gameObject.name +": " + _currentHealth);
         if (_damagedSound != null)
         {
             AudioHelper.PlayClip2D(_damagedSound, 1f);

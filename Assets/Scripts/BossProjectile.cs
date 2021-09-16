@@ -26,6 +26,19 @@ public class BossProjectile : Projectile
         if (collision.gameObject.tag == "Player")
         {
 
+            IDamageable _damage = collision.gameObject.GetComponent<IDamageable>();
+            if (_damage != null)
+            {
+                Debug.Log("Hit!");
+                _damage.TakeDamage(_power);
+            }
+
+            Damage _damaging = collision.gameObject.GetComponent<Damage>();
+            if (_damaging != null)
+            {
+                _damaging.Damaged();
+                Debug.Log("Damaged");
+            }
             if (_impactSound != null)
             {
                 AudioHelper.PlayClip2D(_impactSound, 1f);

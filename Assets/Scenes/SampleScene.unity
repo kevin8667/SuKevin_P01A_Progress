@@ -1927,6 +1927,7 @@ GameObject:
   - component: {fileID: 988977587}
   - component: {fileID: 988977593}
   - component: {fileID: 988977592}
+  - component: {fileID: 988977595}
   - component: {fileID: 988977594}
   m_Layer: 0
   m_Name: Player
@@ -2275,6 +2276,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9213373, y: 0.92714393, z: 1.3249842}
   m_Center: {x: -0.009822725, y: -0.019601148, z: -0.11473641}
+--- !u!114 &988977595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988977586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbbf1cc32eb3244a97f281b3dc910b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _killSound: {fileID: 8300000, guid: 6da725a957f5c2a4992ecc4133789695, type: 3}
+  _damagedSound: {fileID: 8300000, guid: c03ab407389db5242921ff1ce68a78e1, type: 3}
+  _killParticles: {fileID: 2179199855235123540, guid: 7b3e7fbe38ce39f4490c4c50e6b68bb4,
+    type: 3}
+  _maxHealth: 20
 --- !u!1 &1065323645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2946,7 +2964,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-40356
+  m_Name: pb_Mesh201938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
