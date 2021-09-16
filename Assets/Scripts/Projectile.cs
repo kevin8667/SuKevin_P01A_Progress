@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float _travelSpeed = .25f;
     [SerializeField] protected GameObject _impactParticles;
     [SerializeField] protected AudioClip _impactSound;
+    [SerializeField] protected int _power = 1;
     protected GameObject _NewImpactParticles;
 
     protected float TravelSpeed 
@@ -35,6 +36,15 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             Destroy(gameObject);
+            if (_impactSound != null)
+            {
+                AudioHelper.PlayClip2D(_impactSound, 1f);
+            }
+            _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
+            if (_NewImpactParticles)
+            {
+                Destroy(_NewImpactParticles, 1f);
+            }
         }
     }
 
@@ -42,10 +52,24 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Boss")
         {
-            if (_impactSound != null)
+            IDamageable _damage =  other.gameObject.GetComponent<IDamageable>();
+            if(_damage != null)
+            {
+                Debug.Log("Hit!");
+                _damage.TakeDamage(_power);
+            }
+
+            Damage _damaging = other.gameObject.GetComponent<Damage>();
+            if (_damaging != null)
+            {
+                _damaging.Damaged();
+                Debug.Log("Damaged");
+            }
+            
+            /**if (_impactSound != null)
             {
                 AudioHelper.PlayClip2D(_impactSound, 1f);
-            }
+            }**/
             _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
             if (_NewImpactParticles)
             {
@@ -63,5 +87,6 @@ public class Projectile : MonoBehaviour
         Vector3 moveOffset = transform.forward * _travelSpeed * Time.fixedDeltaTime;
         _rb.MovePosition(_rb.position + moveOffset);
     }
+
 
 }

@@ -12,9 +12,24 @@ public class BossProjectile : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        
+    }
+
+    protected override void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.tag == "Wall")
         {
+            Destroy(gameObject);
             
+        }
+        if (collision.gameObject.tag == "Player")
+        {
+
+            if (_impactSound != null)
+            {
+                AudioHelper.PlayClip2D(_impactSound, 1f);
+            }
             _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
             if (_NewImpactParticles)
             {

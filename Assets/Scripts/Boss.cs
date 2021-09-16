@@ -7,6 +7,9 @@ public class Boss : MonoBehaviour
 {
 
     Rigidbody _rb;
+
+    [SerializeField] Material _material;
+    
     [SerializeField] protected float _movementSpeed = 0.25f;
 
     [SerializeField] private GameObject _projectile;
@@ -16,6 +19,7 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+        _material.color = new Vector4(0, 0.6272721f, 1, 1);
     }
 
     // Update is called once per frame
@@ -43,7 +47,7 @@ public class Boss : MonoBehaviour
             float angle = i * Mathf.PI * 2 / _numberOfObject;
             float x = Mathf.Cos(angle) * _radius;
             float z = Mathf.Sin(angle) * _radius;
-            Vector3 pos = new Vector3(x, 1, z);
+            Vector3 pos = new Vector3(x, 0.3f, z);
             float angleDegrees = -angle * Mathf.Rad2Deg;
             Quaternion rot = Quaternion.Euler(0, angleDegrees, 0);
             Instantiate(_projectile, pos, rot);

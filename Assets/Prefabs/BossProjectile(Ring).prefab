@@ -126,5 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _travelSpeed: 3
-  _impactParticles: {fileID: 0}
-  _impactSound: {fileID: 0}
+  _impactParticles: {fileID: 5650094213569592333, guid: 8fed6eb2375a1c54fb64c095c2718173,
+    type: 3}
+  _impactSound: {fileID: 8300000, guid: b8430b948ac45784da10e2478c3ded54, type: 3}
+  _power: 1
