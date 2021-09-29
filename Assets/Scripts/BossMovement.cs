@@ -118,6 +118,7 @@ public class BossMovement : MonoBehaviour
         transform.RotateAround(orbitCenter.transform.position, new Vector3(0, 1, 0), angle);
     }
 
+    //plays the enrage sequence
     private IEnumerator EnrageSequence() 
     {
         

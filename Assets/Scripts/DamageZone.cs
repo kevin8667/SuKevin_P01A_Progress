@@ -36,11 +36,6 @@ public class DamageZone : MonoBehaviour
         {
             StartCoroutine(DestroyCountdown());
         }
-
-        
-        
-        
-        
         
     }
 
@@ -58,7 +53,7 @@ public class DamageZone : MonoBehaviour
         }
     }
 
-
+    //follows the player
     private IEnumerator Move(GameObject player)
     {
         
@@ -69,6 +64,7 @@ public class DamageZone : MonoBehaviour
 
     }
 
+    //drops the damagezone
     private IEnumerator Dropping(float duration)
     {
         float time = 0;
@@ -87,6 +83,8 @@ public class DamageZone : MonoBehaviour
         _isDropped = true;
 
     }
+
+
     private IEnumerator DestroyCountdown()
     {
         yield return new WaitForSeconds(5f);

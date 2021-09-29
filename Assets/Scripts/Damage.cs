@@ -23,6 +23,7 @@ public class Damage : MonoBehaviour
         }
     }
 
+    //material flashing effect when the boss is damaged
     protected virtual IEnumerator DamageSequence()
     {
         //set boolean for detecting lockout

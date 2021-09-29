@@ -29,19 +29,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        
-        
-        
-    }
-
-    // add invincible time for player
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_shootSound != null)
             {
@@ -54,12 +46,12 @@ public class PlayerController : MonoBehaviour
                 Destroy(_NewShootParticles, 1f);
             }
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
 
             _moveSpeed = _moveSpeedSlow;
 
-        }else if (Input.GetKeyUp(KeyCode.LeftShift))
+        }else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             _moveSpeed = _moveSpeedTemp;
         }

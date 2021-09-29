@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(DamageSequence());
     }
 
+    //changes player's health bar
     private void OnTakingDamage(float amount)
     {
         _playerHealthBarImage.fillAmount -= amount;
@@ -44,11 +45,13 @@ public class UIManager : MonoBehaviour
         
     }
 
+    //changes boss's health bar
     private void OnEnemyTakingDamage(float amount)
     {
         _bossHealthBarImage.fillAmount -= amount;
     }
 
+    //screen flashing effect when player is damaged
     protected virtual IEnumerator DamageSequence()
     {
         

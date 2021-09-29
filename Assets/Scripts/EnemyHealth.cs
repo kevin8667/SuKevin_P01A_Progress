@@ -24,9 +24,4 @@ public class EnemyHealth : Health , IDamageable
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
