@@ -17,49 +17,68 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject _damageZone;
     [SerializeField] private GameObject _shield;
 
-    [SerializeField] protected GameObject _summonParticles;
+    [SerializeField] private GameObject _summonParticles;
     [SerializeField] private AudioClip _summonSound;
 
+    [SerializeField] private GameObject _shieldParticles;
+    [SerializeField] private AudioClip _shieldSound;
+
     private GameObject _NewSummonParticles;
+
+    private GameObject _NewshieldParticles;
 
 
 
     public int _numberOfProjectile = 20;
     public float _radius = 5f;
 
-    EnemyHealth _heath;
+    EnemyHealth _health;
 
     private bool _isAttacking = false;
     public bool _isShielded = false;
+    
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _material.color = new Vector4(0, 0.6272721f, 1, 1);
-        _heath = gameObject.GetComponent<EnemyHealth>();
+        _health = gameObject.GetComponent<EnemyHealth>();
+    }
+
+    private void Start()
+    {
+        Instantiate(_shield, transform.position, Quaternion.identity);
+        _isShielded = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         Rotation(_rb);
-        if (Input.GetKeyDown("q") && _isShielded == false)
+        if (_health.CurrentHealth > _health.MaxHealth * 0.5f && _isShielded == false)
         {
-            Instantiate(_shield, transform.position, Quaternion.identity);
             _isShielded = true;
-
-
+            StartCoroutine(SummonShield(6f));
+            
 
         }
+        else if (_health.CurrentHealth <= _health.MaxHealth * 0.5f && _isShielded == false)
+        {
+            _isShielded = true;
+            StartCoroutine(SummonShield(3f));
+           
+        }
 
-        if (_heath.CurrentHealth > _heath.MaxHealth * 0.5f && _isAttacking == false)
+        if (_health.CurrentHealth > _health.MaxHealth * 0.5f && _isAttacking == false)
         {
             StartCoroutine(AttackPattern_1());
         }
-        else if (_heath.CurrentHealth <= _heath.MaxHealth * 0.5f && _isAttacking == false)
+        else if (_health.CurrentHealth <= _health.MaxHealth * 0.5f && _isAttacking == false)
         {
             StartCoroutine(AttackPattern_2());
         }
+
+
 
     }
 
@@ -138,7 +157,9 @@ public class Boss : MonoBehaviour
         
         //wait for the required dduration
         yield return new WaitForSeconds(3f);
+
         StartCoroutine(SummonAttack());
+
         yield return new WaitForSeconds(3f);
 
         _isAttacking = false;
@@ -178,7 +199,22 @@ public class Boss : MonoBehaviour
         Summon();
 
     }
+    private IEnumerator SummonShield(float interval)
+    {
 
+        yield return new WaitForSeconds(interval);
+        if (_shieldSound != null)
+        {
+            AudioHelper.PlayClip2D(_shieldSound, 1f);
+        }
+        _NewshieldParticles = Instantiate(_shieldParticles, transform.position, Quaternion.identity) as GameObject;
+        if (_NewshieldParticles)
+        {
+            Destroy(_NewshieldParticles, 1f);
+        }
+        Instantiate(_shield, transform.position, Quaternion.identity);
+        
+    }
 
-    // add sheild below 50%
+    
 }

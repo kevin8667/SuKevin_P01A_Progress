@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeedTemp;
 
     Rigidbody _rb = null;
+    
     [SerializeField] private GameObject _projectile;
     [SerializeField] protected GameObject _shootParticles;
     [SerializeField] protected AudioClip _shootSound;
+    
     protected GameObject _NewShootParticles;
 
+    [SerializeField] TimeManager _timeManager;
 
     private void Awake()
     {
@@ -29,8 +32,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         
-        Move();
-        MoveHorizontal();
+        
         
     }
 
@@ -62,6 +64,12 @@ public class PlayerController : MonoBehaviour
             _moveSpeed = _moveSpeedTemp;
         }
 
+        if (Input.GetKeyDown(KeyCode.RightShift)) 
+        {
+            _timeManager.SlowDown();
+        }
+        Move();
+        MoveHorizontal();
     }
 
     void Move()

@@ -14,7 +14,7 @@ public class Health : MonoBehaviour , IDamageable
     [SerializeField] protected int _maxHealth;
     protected int _currentHealth;
 
-    private bool _isInvincible = false;
+    public bool _isInvincible = false;
 
     public int CurrentHealth => _currentHealth;
     public int MaxHealth => _maxHealth;
