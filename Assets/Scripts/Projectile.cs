@@ -36,16 +36,18 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             Destroy(gameObject);
-            if (_impactSound != null)
+            /**if (_impactSound != null)
             {
                 AudioHelper.PlayClip2D(_impactSound, 1f);
-            }
+            }**/
             _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
             if (_NewImpactParticles)
             {
                 Destroy(_NewImpactParticles, 1f);
             }
         }
+
+        
     }
 
     protected virtual void OnTriggerEnter(Collider other) 
@@ -80,6 +82,27 @@ public class Projectile : MonoBehaviour
             
             
         }
+        if (other.gameObject.tag == "Shield")
+        {
+            IDamageable _damage = other.gameObject.GetComponent<IDamageable>();
+            if (_damage != null)
+            {
+                Debug.Log("Hit!");
+                _damage.TakeDamage(_power);
+            }
+            Destroy(gameObject);
+            /**if (_impactSound != null)
+            {
+                AudioHelper.PlayClip2D(_impactSound, 1f);
+            }**/
+            _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
+            if (_NewImpactParticles)
+            {
+                Destroy(_NewImpactParticles, 1f);
+            }
+
+        }
+
     }
 
     protected virtual void Move()

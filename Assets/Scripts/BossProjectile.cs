@@ -33,15 +33,21 @@ public class BossProjectile : Projectile
                 _damage.TakeDamage(_power);
             }
 
-            Damage _damaging = collision.gameObject.GetComponent<Damage>();
+            Health _health = collision.gameObject.GetComponent<Health>();
+
+            /**Damage _damaging = collision.gameObject.GetComponent<Damage>();
             if (_damaging != null)
             {
                 _damaging.Damaged();
                 Debug.Log("Damaged");
-            }
+            }**/
             if (_impactSound != null)
             {
-                AudioHelper.PlayClip2D(_impactSound, 1f);
+                if (_health.IsInvicinble == false) 
+                {
+                    AudioHelper.PlayClip2D(_impactSound, 1f);
+                }
+                
             }
             _NewImpactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity) as GameObject;
             if (_NewImpactParticles)
