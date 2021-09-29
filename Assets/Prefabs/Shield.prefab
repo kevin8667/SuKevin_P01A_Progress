@@ -114,6 +114,8 @@ MonoBehaviour:
   _killParticles: {fileID: 8860015526485499425, guid: 60a7e89f867142247bfaf22ceda069b7,
     type: 3}
   _maxHealth: 3
+  _isInvincible: 0
+  _objectMaterial: {fileID: 2100000, guid: 0448935434490ab42be5bc205581ca8d, type: 2}
 --- !u!114 &-7696081914116197171
 MonoBehaviour:
   m_ObjectHideFlags: 0
