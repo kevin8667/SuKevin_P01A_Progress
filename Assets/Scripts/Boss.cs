@@ -58,14 +58,14 @@ public class Boss : MonoBehaviour
         if (_health.CurrentHealth > _health.MaxHealth * 0.5f && _isShielded == false)
         {
             _isShielded = true;
-            StartCoroutine(SummonShield(6f));
+            StartCoroutine(SummonShield(4f));
             
 
         }
         else if (_health.CurrentHealth <= _health.MaxHealth * 0.5f && _isShielded == false)
         {
             _isShielded = true;
-            StartCoroutine(SummonShield(3f));
+            StartCoroutine(SummonShield(2f));
            
         }
 
@@ -146,6 +146,8 @@ public class Boss : MonoBehaviour
         RingProjectileReverse();
 
         yield return new WaitForSeconds(0.5f);
+
+        RingProjectile();
 
     }
 

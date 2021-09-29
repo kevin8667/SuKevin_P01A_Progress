@@ -8,20 +8,55 @@ public class EnemyHealth : Health , IDamageable
 {
     public static event Action<float> EnemyTakingDamage;
 
+    public bool _isBossInvincible = false;
+
     public override void TakeDamage(int amount)
     {
-        _currentHealth -= amount;
-        Debug.Log(gameObject.name + ": " + _currentHealth);
-        if (_damagedSound != null)
+        if (_isBossInvincible == false) 
         {
-            AudioHelper.PlayClip2D(_damagedSound, 1f);
+            _currentHealth -= amount;
+            Debug.Log(gameObject.name + ": " + _currentHealth);
+            if (_damagedSound != null)
+            {
+                AudioHelper.PlayClip2D(_damagedSound, 1f);
+            }
+            if (_currentHealth <= 0)
+            {
+                Kill();
+            }
+            EnemyTakingDamage?.Invoke((float)amount / _maxHealth);
+            StartCoroutine(InvincibleTimer());
+            StartCoroutine(InvincibleFlash());
         }
-        if (_currentHealth <= 0)
-        {
-            Kill();
-        }
-        EnemyTakingDamage?.Invoke((float)amount / _maxHealth);
+        
     }
 
+    private IEnumerator InvincibleTimer()
+    {
+        _isBossInvincible = true;
 
+        //wait for the required dduration
+        yield return new WaitForSeconds(0.3f);
+
+        _isBossInvincible = false;
+
+    }
+    private IEnumerator InvincibleFlash()
+    {
+        GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
+
+        yield return new WaitForSeconds(0.07f);
+
+        GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
+
+        yield return new WaitForSeconds(0.07f);
+
+        GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
+
+        yield return new WaitForSeconds(0.07f);
+        GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
+
+        yield return new WaitForSeconds(0.07f);
+
+    }
 }

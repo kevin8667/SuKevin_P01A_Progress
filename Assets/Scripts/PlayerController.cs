@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(_NewShootParticles, 1f);
             }
         }
+        //slow mode
         if (Input.GetKey(KeyCode.LeftControl))
         {
 

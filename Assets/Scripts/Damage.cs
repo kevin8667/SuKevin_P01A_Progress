@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-   [SerializeField] Material _objectMaterial;
+
+    [SerializeField] Material _objectMaterial;
+
     Color _objectColor;
+
     bool _damaged = false;
+
+    
     // Start is called before the first frame update
 
     private void Awake()
     {
-        
         _objectColor = _objectMaterial.color;
     }
 
     public virtual void Damaged()
     {
-        if(_damaged != true && gameObject.activeInHierarchy == true)
+        if(_damaged != true /**&& gameObject.activeInHierarchy == true**/)
         {
             StartCoroutine(DamageSequence());
         }

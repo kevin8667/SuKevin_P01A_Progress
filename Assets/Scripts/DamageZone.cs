@@ -32,7 +32,7 @@ public class DamageZone : MonoBehaviour
         {
             StartCoroutine(Dropping(0.3f));
         }
-        else if (_isDropping == false && _isDropped == true) 
+        if (_isDropped == true) 
         {
             StartCoroutine(DestroyCountdown());
         }
@@ -49,6 +49,7 @@ public class DamageZone : MonoBehaviour
             {
                 _damage.TakeDamage(1);
             }
+            Destroy(gameObject);
 
         }
     }
@@ -88,13 +89,9 @@ public class DamageZone : MonoBehaviour
     private IEnumerator DestroyCountdown()
     {
         yield return new WaitForSeconds(5f);
-        SelfDestory();
-
-    }
-
-    private void SelfDestory() 
-    {
         Destroy(gameObject);
+
     }
+
 
 }
