@@ -180,6 +180,10 @@ public class Boss : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        StartCoroutine(SummonAttack());
+
+        yield return new WaitForSeconds(3f);
+
         _isAttacking = false;
     }
 

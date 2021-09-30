@@ -34,7 +34,7 @@ public class DamageZone : MonoBehaviour
         }
         if (_isDropped == true) 
         {
-            StartCoroutine(DestroyCountdown());
+            Destroy(gameObject, 3.5f);
         }
         
     }
@@ -84,14 +84,5 @@ public class DamageZone : MonoBehaviour
         _isDropped = true;
 
     }
-
-
-    private IEnumerator DestroyCountdown()
-    {
-        yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
-
-    }
-
 
 }
